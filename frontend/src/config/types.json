@@ -1,4 +1,5 @@
 {
+  "Settings": "Developer",
   "Address": "AccountId",
   "LookupSource": "AccountId",
   "Kitty": "([u8; 16])",
