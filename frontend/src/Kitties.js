@@ -19,10 +19,37 @@ export default function Kitties (props) {
 
   const fetchKittyCnt = () => {
     /* TODO: 加代码，从 substrate 端读取数据过来 */
+    let a = null;
+    const cnt = async () => {
+      a = await api.query.kittiesModule.kittiesCount();
+      setKittyCnt(a.toNumber());
+    }
+    
+    cnt();
+
+    return () => a && a();
   };
 
   const fetchKitties = () => {
     /* TODO: 加代码，从 substrate 端读取数据过来 */
+    // let k = api.query.kittiesModule.kitties;
+    // return k;
+
+    let k = null;
+    const fetch = async () => {
+      let indexes = [];
+      for (let i = 0; i < kittyCnt; i ++) {
+        indexes.push(i);
+      }
+      k = await api.query.kittiesModule.kitties.multi(indexes, (ks) => {
+        console.log("kitties", ks);
+        setKitties(ks);
+      })
+    }
+    
+    fetch();
+
+    return () => k && k();
   };
 
   const populateKitties = () => {

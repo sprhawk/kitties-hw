@@ -13,6 +13,7 @@ const TransferModal = props => {
 
   const formChange = key => (ev, el) => {
     /* TODO: 加代码 */
+    console.log("KittiesCards formChange");
   };
 
   const confirmAndClose = (unsub) => {
@@ -46,6 +47,7 @@ const TransferModal = props => {
 // --- About Kitty Card ---
 
 const KittyCard = props => {
+  const { kitty, accountPair, setStatus } = props;
   /*
     TODO: 加代码。这里会 UI 显示一张 `KittyCard` 是怎么样的。这里会用到：
     ```
@@ -53,14 +55,27 @@ const KittyCard = props => {
     <TransferModal kitty={kitty} accountPair={accountPair} setStatus={setStatus}/> - 来作转让的弹出层
     ```
   */
-  return null;
+ return (<div>
+ <KittyAvatar dna={kitty.value} />
+ <TransferModal kitty={kitty} accountPair={accountPair} setStatus={setStatus}/>
+ </div>);
 };
 
 const KittyCards = props => {
   const { kitties, accountPair, setStatus } = props;
 
   /* TODO: 加代码。这里会枚举所有的 `KittyCard` */
-  return null;
+  let cards = kitties.map((kitty, index) => {
+    return (
+      <KittyCard key={kitty.value.toString()} kitty={kitty} accountPair={accountPair} setStatus={setStatus} />
+    );
+  });
+
+  return (
+    <div>
+    { cards }
+    </div>
+  );
 };
 
 export default KittyCards;
