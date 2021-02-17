@@ -42,8 +42,13 @@ export default function Kitties (props) {
         indexes.push(i);
       }
       k = await api.query.kittiesModule.kitties.multi(indexes, (ks) => {
-        console.log("kitties", ks);
-        setKitties(ks);
+        let kt = ks.map((kitty, index) => {
+          return {
+            id: index,
+            dna: kitty.value,
+          };
+        })
+        setKitties(kt);
       })
     }
     

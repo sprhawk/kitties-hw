@@ -56,7 +56,7 @@ const KittyCard = props => {
     ```
   */
  return (<div>
- <KittyAvatar dna={kitty.value} />
+ <KittyAvatar dna={kitty.dna} />
  <TransferModal kitty={kitty} accountPair={accountPair} setStatus={setStatus}/>
  </div>);
 };
@@ -66,8 +66,9 @@ const KittyCards = props => {
 
   /* TODO: 加代码。这里会枚举所有的 `KittyCard` */
   let cards = kitties.map((kitty, index) => {
+    console.log("kitty: ", kitty);
     return (
-      <KittyCard key={kitty.value.toString()} kitty={kitty} accountPair={accountPair} setStatus={setStatus} />
+      <KittyCard key={kitty.id} kitty={kitty} accountPair={accountPair} setStatus={setStatus} />
     );
   });
 
